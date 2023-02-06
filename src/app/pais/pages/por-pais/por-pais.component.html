@@ -15,11 +15,11 @@
   </div>
 </div>
 <hr />
-<div class="alert alert-danger">
-  No se encontro contenido con los parametro escritos
+<div *ngIf="validateSearch" class="alert alert-danger">
+  No se encontro contenido con el parametro <span >{{termino}}</span>
 </div>
 
-<div class="row">
+<div *ngIf="!validateSearch" class="row">
   <div class="col">
     <table class="table table-hover">
       <thead>
@@ -31,12 +31,12 @@
           <th></th>
         </tr>
       </thead>
-      <tbody>
-        <th>1</th>
-        <th>Bandera</th>
-        <th>Venezuela</th>
-        <th>24.000.000</th>
-        <th><a href="/pais/cri">Ver...</a></th>
+      <tbody *ngFor="let countrie of dataCountrie; let i = index ">
+        <th>{{ i+1 }}</th>
+        <th><img class="small-flag" [src]="countrie.flags.png" alt=""> </th>
+        <th>{{countrie.name.official}}</th>
+        <th>{{countrie.population | number}}</th>
+        <th><a [routerLink]="['/pais',]" >Ver...</a></th>
       </tbody>
     </table>
   </div>
