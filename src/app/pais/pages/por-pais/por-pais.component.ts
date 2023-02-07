@@ -17,9 +17,11 @@ export class PorPaisComponent   {
   constructor(private paisService: PaisService) { }
 
 
-  Search(){
+  Search(datSearch: any){
+
     this.validateSearch = false;
-    console.log(this.termino);
+    this.termino = datSearch;
+
     this.paisService.getSearchCountrie(this.termino).subscribe((response) =>{
       this.dataCountrie = response;
       console.log(this.dataCountrie);
@@ -27,6 +29,10 @@ export class PorPaisComponent   {
       this.validateSearch = true;
       this.dataCountrie = [];
     });
+  }
+
+  searchValue(datSearch: any){
+   this.Search(datSearch)
   }
 
 

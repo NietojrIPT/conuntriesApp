@@ -3,41 +3,18 @@
 
 <div class="row">
   <div class="col">
-    <form (ngSubmit)="Search()" autocomplete="off">
-      <input
-        type="text"
-        name="termino"
-        placeholder="Search..."
-        [(ngModel)]="termino"
-        class="form-control"
-      />
-    </form>
+    <app-pais-input
+        (valueSearch)="searchValue($event)"
+    ></app-pais-input>
   </div>
 </div>
 <hr />
 <div *ngIf="validateSearch" class="alert alert-danger">
-  No se encontro contenido con el parametro <span >{{termino}}</span>
+  No se encontro contenido con el parametro <span>{{ termino }}</span>
 </div>
 
 <div *ngIf="!validateSearch" class="row">
   <div class="col">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Bandera</th>
-          <th>Nombre</th>
-          <th>Población</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let countrie of dataCountrie; let i = index ">
-        <th>{{ i+1 }}</th>
-        <th><img class="small-flag" [src]="countrie.flags.png" alt=""> </th>
-        <th>{{countrie.name.official}}</th>
-        <th>{{countrie.population | number}}</th>
-        <th><a [routerLink]="['/pais',]" >Ver...</a></th>
-      </tbody>
-    </table>
+    <app-pais-table [CountrieData]="dataCountrie"></app-pais-table>
   </div>
 </div>
